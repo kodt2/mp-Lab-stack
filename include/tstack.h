@@ -13,7 +13,9 @@ public:
 	TStack(TStack s1) {
 		n = s1.n;
 		mem = s1.mem;
+		if (stack == nullptr){
 		delete[] stack;
+		}
 		stack = new T[mem];
 		for (int i = 0; i < n; i++) {
 			stack[i] = s1.stack[i];
