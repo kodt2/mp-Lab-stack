@@ -8,59 +8,61 @@ private:
 public:
 	TStack() {
 		n = 0;
-		mem = 0;
-	}
-	TStack(TStack s1) {
+		mem = 1;
+		stack = new T[1];
+	};
+	TStack(const TStack<int>& s1) {
 		n = s1.n;
 		mem = s1.mem;
-		if (stack == nullptr){
-		delete[] stack;
-		}
 		stack = new T[mem];
 		for (int i = 0; i < n; i++) {
 			stack[i] = s1.stack[i];
 		}
-	}
+	};
 	~TStack() {
 		n = 0;
 		mem = 0;
 		delete[] stack;
-	}
+	};
 	void push(T e) {
-		if (mem != 0) {
-			if (n >= mem) {
-				mem = 2 * mem;
-				T* temp = stack;
-				stack = new T[mem];
-				for (int i = 0; i < n; i++) {
-					stack[i] = temp->stack[i];
-				}
-				delete[] temp;
-				stack[n] = e;
-				n++;
+		if (n >= mem) {
+			mem = 2 * mem;
+			T* temp = stack;
+			stack = new T[mem];
+			for (int i = 0; i < n; i++) {
+				stack[i] = temp[i];
 			}
-			else {
-				stack[n] = e;
-				n++;
-			}
+			delete[] temp;
+			stack[n] = e;
+			n++;
 		}
 		else {
-			n = 1;
-			mem = 1;
-			stack = new T[1];
-			stack[0] = e;
-		}
-	}
+			stack[n] = e;
+			n++;
+		}	
+	};
 	void pop() {
 		n--;
-	}
+	};
 	T top() {
-		return (stack[n-1]);
-	}
+		return (stack[n - 1]);
+	};
 	int size() {
 		return n;
-	}
+	};
 	bool empty() {
 		return n == 0;
+	};
+	bool operator==(const TStack& t) const {
+		bool res = true;
+		if (n != t.n) {
+			return false;
+		}
+		for (int i = 0; i < n; i++) {
+			if (stack[i] != t.stack[i]) {
+				res = false;
+			}
+		}
+		return res;
 	}
 };
