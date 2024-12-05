@@ -21,6 +21,8 @@ TEST(TStack, copied_stack_is_equal_to_source_one)
 	EXPECT_EQ(m, m1);
 }
 
+
+
 TEST(TStack, copied_stack_has_its_own_memory)
 {
 	TStack<int> m;

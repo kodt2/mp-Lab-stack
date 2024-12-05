@@ -11,6 +11,9 @@ public:
 		mem = 1;
 		stack = new T[1];
 	};
+
+
+
 	TStack(const TStack<int>& s1) {
 		n = s1.n;
 		mem = s1.mem;
